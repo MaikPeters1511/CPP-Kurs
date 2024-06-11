@@ -1,1 +1,2 @@
-Lokale Schleifnzähle
+Lokale Schleifenzählerdeklaration in FOR
+
