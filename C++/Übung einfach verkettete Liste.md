@@ -1,0 +1,326 @@
+```cpp
+#include <iostream>  
+  
+struct Node  
+{  
+    Node* next;  
+    int data;  
+};  
+  
+// Anzahl Elemente zählen  
+int countNodes(const Node* head) {  
+    int count = 0;  
+    const Node* current = head;  // Beginne am Kopf der Liste  
+  
+    while (current != nullptr) {  
+        count++;  
+        current = current->next;  // Gehe zum nächsten Knoten  
+    }  
+    return count;  
+}  
+  
+// Knoten an Pos. x finden  
+Node* findNodeAtPosition(Node* head, int x) {  
+    Node* current = head;  
+    int count = 0;  
+  
+    // Laufe durch die Liste  
+    while (current != nullptr) {  
+        if (count == x)  
+            return current;  // Der gewünschte Knoten wurde gefunden  
+  
+        count++;  
+        current = current->next; // Gehe zum nächsten Knoten  
+    }  
+  
+    // Wenn wir hier gelangen, dann war x außerhalb der Liste, also geben NULL zurück  
+    return nullptr;  
+}  
+  
+// Inhalt an Pos. x zurückliefern  
+int getDataAtPosition(Node* head, int x) {  
+    Node* nodeAtPosition = findNodeAtPosition(head, x);  
+    if (nodeAtPosition != nullptr) {  
+        return nodeAtPosition->data;  
+    }  
+    else {  
+        std::__throw_out_of_range("Position out of range");  
+    }  
+}  
+  
+// Neues Element ans Ende anhängen  
+Node* appendToEnd(Node* head, int new_data) {  
+    // Reserviere Speicherplatz für neuen Knoten  
+    Node* new_node = new Node();  
+  
+    // Füge die Daten hinzu  
+    new_node->data = new_data;  
+    new_node->next = nullptr;  
+  
+    // Wenn die Liste leer ist, wird der neue Knoten zum Kopf  
+    if (head == nullptr) {  
+        head = new_node;  
+        return head;  
+    }  
+  
+    // Durchlaufe die Liste bis zum letzten Knoten  
+    Node* last = head;  
+    while (last->next != nullptr)  
+        last = last->next;  
+  
+    // Ändere den next-Zeiger des letzten Knoten  
+    last->next = new_node;  
+  
+    // Gib den Kopf der modifizierten Liste zurück  
+    return head;  
+}  
+  
+// Liste am Ende anhängen  
+void appendLists(Node*& list1, Node* list2) {  
+    // Wenn die erste Liste leer ist, wird die zweite Liste zur ersten Liste  
+    if (list1 == nullptr) {  
+        list1 = list2;  
+        return;  
+    }  
+  
+    // Finde den letzten Knoten in der ersten Liste  
+    Node* current = list1;  
+    while (current->next != nullptr) {  
+        current = current->next;  
+    }  
+  
+    // Setze den 'next' Zeiger des letzten Knotens der ersten  
+    // Liste auf den ersten Knoten der zweiten Liste    current->next = list2;  
+}  
+  
+// Element an Pos. x löschen  
+void deleteAtPosition(Node*& head, int x) {  
+    // wenn Liste leer ist  
+    if (head == nullptr) {  
+        return;  
+    }  
+  
+    // Wenn der Kopf gelöscht werden soll  
+    if (x == 0) {  
+        Node* temp = head;  // Temporärer Zeiger zum nachfolgenden Knoten  
+        head = head->next;  // Kopf auf den nächsten Knoten setzen  
+        delete temp;  // Speicherplatz des alten Kopfes freigeben  
+        return;  
+    }  
+  
+    // Zwei Zeiger definieren und zum Knoten vor der Löschposition bewegen  
+    Node* prev = head;  
+    for (int i = 0; prev != nullptr && i < x - 1; i++) {  
+        prev = prev->next;  
+    }  
+  
+    // Wenn die Position mehr als die Anzahl der Knoten ist  
+    if (prev == nullptr || prev->next == nullptr) {  
+        return;  
+    }  
+  
+    // Knoten temp->next wird gelöscht  
+    Node* temp = prev->next;  // Temporärer Zeiger zum Löschknoten  
+    prev->next = temp->next;  // überspringt den zu löschenden Knoten  
+  
+    delete temp;  // Löscht den Knoten  
+}  
+  
+// Löschen der ganzen Liste  
+void deleteList(Node*& head) {  
+    // Temporärer Zeiger  
+    Node* current = head;  
+    Node* nextNode;  
+  
+    while (current != nullptr) {  
+        nextNode = current->next;  // Nächsten Knoten speichern  
+        delete current;  // Aktuellen Knoten löschen  
+        current = nextNode;  // Zum nächsten Knoten wechseln  
+    }  
+  
+    // Kopf auf NULL setzen  
+    head = nullptr;  
+}  
+  
+// Einfügen eines Elements an Pos. x  
+void insertAtPosition(Node*& head, int data, int position) {  
+    Node* newNode = new Node();  
+    newNode->data = data;  
+    newNode->next = nullptr;  
+  
+    // Wenn die Liste leer ist  
+    if (head == nullptr) {  
+        // Wenn die Position [0, 1] ist, füge den neuen Knoten hinzu  
+        if (position == 0 || position == 1) {  
+            newNode->next = nullptr;  
+            head = newNode;  
+        } else {  
+            // Wenn die Position nicht [0, 1] ist und die Liste leer ist, ist Position ungültig  
+            delete newNode;  
+            return;  
+        }  
+    } else {  
+        // Wenn die Position 0 oder 1 ist, fügen wir den Knoten an den Anfang der Liste hinzu  
+        if (position == 0 || position == 1) {  
+            newNode->next = head;  
+            head = newNode;  
+        } else {  
+            // Sucht den Knoten, der vor der Einfügeposition steht  
+            Node* current = head;  
+            int currentPos = 1; // Beginnt bei 1, da wir den Knoten *vor* der Einfügeposition suchen  
+            while (currentPos < position - 1 && current->next != nullptr) {  
+                current = current->next;  
+                currentPos++;  
+            }  
+  
+            // Platziert den neuen Knoten an der richtigen Position  
+            if (currentPos == position - 1) {  
+                newNode->next = current->next;  
+                current->next = newNode;  
+            } else {  
+                // Wenn die Position grösser als die Anzahl der Elemente in der Liste ist, Position ist ungültig  
+                delete newNode;  
+                return;  
+            }  
+        }  
+    }  
+}  
+  
+// Sortieren der Liste nach ihren Inhalt aufsteigend  
+Node* getMiddle(Node* head) {  
+    if (head == nullptr)  
+        return head;  
+  
+    Node* slow = head;  
+    Node* fast = head->next;  
+  
+    while (fast != nullptr) {  
+        fast = fast->next;  
+        if (fast != nullptr) {  
+            slow = slow->next;  
+            fast = fast->next;  
+        }  
+    }  
+  
+    return slow;  
+}  
+  
+// Funktion, die zwei Listen in einer sortierten Liste zusammenführt  
+auto sortedMerge(Node* a, Node* b) -> Node*  
+{  
+    Node* result = nullptr;  
+  
+    if (a == nullptr)  
+        return b;  
+    else if (b == nullptr)  
+        return a;  
+  
+    if (a->data <= b->data) {  
+        result = a;  
+        result->next = sortedMerge(a->next, b);  
+    }  
+    else {  
+        result = b;  
+        result->next = sortedMerge(a, b->next);  
+    }  
+  
+    return result;  
+}  
+  
+// Implementierung mit main Methode MergeSort  
+auto mergeSort(Node*& head) -> void  
+{  
+  
+    // Basisfall -- Länge 0 oder 1  
+    if ((head == nullptr) || (head->next == nullptr)) {  
+        return;  
+    }  
+  
+    Node* middle = getMiddle(head);  // Holen Sie sich das Mittlere der Liste  
+    Node* half = middle->next;  
+  
+    middle->next = nullptr;  // Trenne die Liste in zwei Hälften  
+  
+    // Sortiere die beiden Hälften    mergeSort(head);  
+    mergeSort(half);  
+  
+   // verbinde sie zurück  
+    head = sortedMerge(head, half);  
+}  
+  
+// Ausgeben der ganzen Liste ( mit Kommata getrennt, am Ende Punkt)  
+// Beispiel der Ausgabe 1,2,3,4,5.  
+void printList(Node* head) {  
+    const Node* current = head;  // Starte beim Kopf der Liste  
+  
+    while (current != nullptr) {  
+        std::cout << current->data;  // Aktuellen Wert ausgeben  
+  
+        // Wenn es noch einen nächsten Knoten gibt, drucke ein Komma        if (current->next != nullptr) {  
+            std::cout << ",";  
+        }  
+  
+        current = current->next;  // Zur nächsten Position in der Liste wechseln  
+    }  
+  
+    std::cout << "." << std::endl;  // Am Ende der Liste einen Punkt ausgeben  
+}  
+  
+int main() {  
+    // Erstellen der Knoten  
+    Node* first = nullptr;  
+  
+    Node* head = new Node();  
+    head->data = 1;  
+    head->next = nullptr;  
+  
+    Node* second = new Node();  
+    second->data = 2;  
+    second->next = nullptr;  
+    head->next = second;  
+  
+    Node* third = new Node();  
+    third->data = 3;  
+    third->next = nullptr;  
+    second->next = third;  
+  
+    // Anzahl der Knoten zählen  
+    int nodeCount = countNodes(head);  
+    std::cout << "Count of nodes: " << nodeCount << std::endl;  
+  
+    // Finde den Knoten an der Position 1  
+    int position = 1;  
+    Node* nodeAtPosition = findNodeAtPosition(head, position);  
+    if (nodeAtPosition != nullptr) {  
+        std::cout << "Node at position: " << position << " has data: " << nodeAtPosition->data << std::endl;  
+    } else {  
+        std::cout << "No node at position: " << position << std::endl;  
+    }  
+  
+    // Inhalt des Knotens ausgeben  
+    int positionData = 0;  
+    try {  
+        int data = getDataAtPosition(head, positionData);  
+        std::cout << "Data at position " << positionData << " is " << data << std::endl;  
+    }  
+    catch (std::out_of_range& e) {  
+        std::cout << "Position " << positionData << " is out of range" << std::endl;  
+    }  
+  
+    Node* node4 = appendToEnd(head, 4);  
+  
+    // Anzahl der Knoten zählen  
+    int nodeCount1 = countNodes(head);  
+    std::cout << "Count of nodes: " << nodeCount1 << std::endl;  
+  
+    printList(head);  
+  
+    // Denken Sie daran, den Speicher freizugeben, wenn Sie ihn nicht mehr benötigen!  
+    const Node* t = head;  
+    while(t!= nullptr) {  
+        const Node* next = t->next;  
+        delete t;  
+        t = next;  
+    }  
+}
+```
