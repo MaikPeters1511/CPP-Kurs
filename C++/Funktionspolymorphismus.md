@@ -8,7 +8,7 @@ Polymorphismus zur Kompilierungszeit gibt es in C++ in zwei Formen: Funktionsüb
 
 Wie bereits erwähnt, können wir durch Funktionsüberladung dieselbe Funktion mehrfach verwenden, wobei die Aktion oder Ausgabe dieser Funktion vom zugewiesenen Datentyp abhängt. So funktioniert die Funktionsüberladung im Code:
 
-````cpp
+```cpp
 void Ausgabe(int Dessertnummer) {
     cout << "Die Anzahl der Desserts ist " << dessert_num << endl;
 }
@@ -32,11 +32,16 @@ int main() {
     Ausgabe(z);
     gebe 0 zurück;
 }
+```
 
-Wir verwenden dieselbe _output()-_ Funktion, um je nach Datentyp der Funktionseingabe ein anderes Ergebnis auszugeben. Das Programm fordert den Benutzer zur Eingabe einer Reihe von Werten auf und gibt diese Werte mit der richtigen Zeichenfolge zurück. Mit 6, 30,25 und Cookie erhalten wir Folgendes:
+Wir verwenden dieselbe _Ausgabe()-_ Funktion, um je nach Datentyp der Funktionseingabe ein anderes Ergebnis auszugeben. Das Programm fordert den Benutzer zur Eingabe einer Reihe von Werten auf und gibt diese Werte mit der richtigen Zeichenfolge zurück. Mit 6, 30,25 und Cookie erhalten wir 
 
+Folgendes:
+```output
 Die Anzahl der Desserts beträgt 6
 Die Vorbereitungszeit beträgt 30,25 Minuten
 Der Nachtisch sind Kekse
+```
+
 
 Das Programm gibt basierend auf den Eingaben die richtigen Ausgaben zurück.
