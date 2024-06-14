@@ -4,30 +4,19 @@
 
 Für ganzzahlige Daten, auch Integer-Daten genannt, stehen die in der nachfolgenden Tabelle aufgeführten Datentypen zur Verfügung. Die Wertebereiche der Datentypen bei Verwendung des MinGW-Compilers sowie des Visual Studios sind ebenfalls aufgeführt.
 
-| Datentyp      | Wertebereich                               |
-| ------------- | ------------------------------------------ |
-| signed char   | -128...127                                 |
-| short         | -32768...32767                             |
-| long (=int)   | -2147483648...2147483647                   |
-| long long     | -9223372036854775808...9223372036854775807 |
-| unsigned char |                                            |
-|               |                                            |
+| Datentyp                      | Wertebereich                               |
+| ----------------------------- | ------------------------------------------ |
+| signed char                   | -128...127                                 |
+| short                         | -32768...32767                             |
+| long (=int)                   | -2147483648...2147483647                   |
+| long long                     | -9223372036854775808...9223372036854775807 |
+|                               |                                            |
+| unsigned char<br>             | 0...255                                    |
+| unsigned short                | 0...65535                                  |
+| unsigned long (=unsigned int) | 0...4294967295                             |
+| unsigned long long            |                                            |
 
 
-
-
-
-0...255
-
-unsigned short
-
-0...65535
-
-unsigned long (=unsigned int)
-
-0...4294967295
-
-unsigned long long
 
 0...18446744073709551615
 
