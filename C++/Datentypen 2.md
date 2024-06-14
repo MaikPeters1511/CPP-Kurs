@@ -4,7 +4,11 @@
 
 Für ganzzahlige Daten, auch Integer-Daten genannt, stehen die in der nachfolgenden Tabelle aufgeführten Datentypen zur Verfügung. Die Wertebereiche der Datentypen bei Verwendung des MinGW-Compilers sowie des Visual Studios sind ebenfalls aufgeführt.
 
-Datentyp
+| Datentyp  | Description |     |
+| --------- | ----------- | --- |
+| Header    | Title       |     |
+| Paragraph | Text        |     |
+
 
 Wertebereich
 
