@@ -53,10 +53,6 @@ Der Name der Variable muss eindeutig sein und unterliegt folgenden Einschränkun
 - darf nicht mit einem reservierten Schlüsselwort übereinstmmen und
 - darf keine Umlaute oder ß enthalten. 
 
-```
-
-```
-
 ### Initialisierung von Variablen
 
 Variablen können bei ihrer Definition mit einem Datum initialisiert werden. Dies erfolgt in der Art, dass nach dem Variablenname der Zuweisungsoperator = folgt und anschließend der Initialwert.
