@@ -14,35 +14,20 @@ Für ganzzahlige Daten, auch Integer-Daten genannt, stehen die in der nachfolgen
 | unsigned char<br>             | 0...255                                    |
 | unsigned short                | 0...65535                                  |
 | unsigned long (=unsigned int) | 0...4294967295                             |
-| unsigned long long            |                                            |
+| unsigned long long            | 0...18446744073709551615                   |
 
-
-
-0...18446744073709551615
 
 ### Gleitkomma-Daten
 
 Für die Verarbeitung von Gleitkommazahlen stehen 3 Datentypen zur Verfügung. Diese Datentypen unterscheiden sich zum einen ebenfalls im Wertebereich und zum anderen durch die Anzahl der Stellen, mit denen der Datentyp rechnet.
 
-Datentyp
+| Datentyp    | Min/Max        |
+| ----------- | -------------- |
+| float       | -/+ 3.403e+38  |
+| double      | -/+ 1.798e+308 |
+| long double |                |
 
-Min/Max
 
-Berechnung 1./3.
-
-float
-
--/+ 3.403e+38
-
-0.3333333432674407959
-
-double
-
--/+ 1.798e+308
-
-0.33333333333333331483
-
-long double
 
 -/+ 1.190e+4932
 
