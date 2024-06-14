@@ -78,7 +78,11 @@ char = 0, unsigned long: 0 ;
 bool: false, float: 0.00;
 ```
 
-`short svar1=1, svar2=10;       // Zwei short-Variablen   float fvar1=1.2f, fvar2=3.14f; // und zwei float-Variablen initialisieren`
+```cpp
+
+```
+Mehrere Variablen desselben Datentyps können in einer Anweisung definiert werden, wobei die Variablennamen durch Komma getrennt werden.
+
 
 ## Konstanten
 
