@@ -21,17 +21,11 @@ Für ganzzahlige Daten, auch Integer-Daten genannt, stehen die in der nachfolgen
 
 Für die Verarbeitung von Gleitkommazahlen stehen 3 Datentypen zur Verfügung. Diese Datentypen unterscheiden sich zum einen ebenfalls im Wertebereich und zum anderen durch die Anzahl der Stellen, mit denen der Datentyp rechnet.
 
-| Datentyp    | Min/Max        |
-| ----------- | -------------- |
-| float       | -/+ 3.403e+38  |
-| double      | -/+ 1.798e+308 |
-| long double |                |
-
-
-
--/+ 1.190e+4932
-
-0.33333333333333333334
+| Datentyp    | Min/Max         |
+| ----------- | --------------- |
+| float       | -/+ 3.403e+38   |
+| double      | -/+ 1.798e+308  |
+| long double | -/+ 1.190e+4932 |
 
 Beim Visual Studio Compiler sind die Datentypen _long double_ und _double_ identisch!
 
@@ -59,18 +53,30 @@ Der Name der Variable muss eindeutig sein und unterliegt folgenden Einschränkun
 - darf nicht mit einem reservierten Schlüsselwort übereinstmmen und
 - darf keine Umlaute oder ß enthalten. 
 
-`// Header-Datei einbinden   #include <iostream>   #include <format>      // Definition einer char- und unsigned long Variable   char cvar;   unsigned long ulvar;      ``   int main()   {      // Definition einer bool und float Variable      bool bvar;      float fvar;      // Ausgabe der Variablen      std::cout << std::format("char: {:x}, unsigned long: {}\n"                               "bool: {}, float: {:8.2f}\n",                                cvar, ulvar, bvar, fvar);   }   `
+```
 
-char: 0, unsigned long: 0  
-bool: false, float:      0.00
-
-Mehrere Variablen desselben Datentyps können in einer Anweisung definiert werden, wobei die Variablennamen durch Komma getrennt werden.
-
-`short svar1, svar2;  // Zwei short-Variablen   float fvar1, fvar2;  // und zwei float-Variablen   `
+```
 
 ### Initialisierung von Variablen
 
 Variablen können bei ihrer Definition mit einem Datum initialisiert werden. Dies erfolgt in der Art, dass nach dem Variablenname der Zuweisungsoperator = folgt und anschließend der Initialwert.
+
+```cpp
+// Header-Datei einbinden  
+#include <iostream>   #include <format>      // Definition einer char- und unsigned long Variable     
+char cvar;   unsigned long ulvar;  
+  
+int main()   {  
+    // Definition einer bool und float Variable  
+    bool bvar;  
+    float fvar; // Ausgabe der Variablen  
+    std::cout << std::format("char: {:x}, unsigned long: {}\n"  
+       "bool: {}, float: {:8.2f}\n",cvar, ulvar, bvar, fvar);  
+}  
+  
+char = 0, unsigned long: 0 ;  
+bool: false, float: 0.00;
+```
 
 `short svar1=1, svar2=10;       // Zwei short-Variablen   float fvar1=1.2f, fvar2=3.14f; // und zwei float-Variablen initialisieren`
 
