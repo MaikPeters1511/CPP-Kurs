@@ -99,7 +99,12 @@ Ein Literal ist die direkte Angabe eines Wertes, wie z.B. die Zahl 5 oder der St
 
 Ganzzahl-Literale besitzen standardmäßig den kleinsten Datentyp, in dem ihr Wert dargestellt werden kann, aber mindestens den Datentyp _int_. Um ein Ganzzahl-Literal explizit einem Datentyp zuzuordnen, wird der Wert mit einem Präfix oder Suffix erweitert. Die Groß-/Kleinschreibung spielt hier ausnahmsweise keine Rolle
 
-Datentyp
+| Datentyp  | Description |     |
+| --------- | ----------- | --- |
+| Header    | Title       |     |
+| Paragraph | Text        |     |
+|           |             |     |
+
 
 Präfix
 
